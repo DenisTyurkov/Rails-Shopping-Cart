@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :order_products
+  resources :users
   get 'order/index'
 
   # The priority is based upon order of creation: first created -> highest priority.

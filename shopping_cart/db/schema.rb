@@ -11,17 +11,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150818040106) do
+ActiveRecord::Schema.define(version: 20150820041041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "order_products", force: :cascade do |t|
+    t.integer  "order_id"
+    t.integer  "product_id"
+    t.decimal  "total_price"
+    t.integer  "total_quantity"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "order_products", ["order_id"], name: "index_order_products_on_order_id", using: :btree
+  add_index "order_products", ["product_id"], name: "index_order_products_on_product_id", using: :btree
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
+
   create_table "products", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.integer  "price"
+    t.string   "product_name",                                null: false
+    t.text     "product_description",                         null: false
+    t.decimal  "product_price",       precision: 8, scale: 2, null: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name_given"
+    t.string   "name_family"
+    t.string   "email"
+    t.string   "digest"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
+  add_foreign_key "order_products", "orders"
+  add_foreign_key "order_products", "products"
+  add_foreign_key "orders", "users"
 end
