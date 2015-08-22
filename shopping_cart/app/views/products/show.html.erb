@@ -1,0 +1,22 @@
+
+<div class="container">
+  <div class="col-sm-12">
+    <div class="product col-sm-5 service-image-left">
+        <img src="<%=@product.product_image%>" alt="<%=@product.product_name%>" id="@product-display">
+    </div>
+    <div class="col-sm-7">
+      <div class="product-title"><p><%=@product.product_name%></p></div>
+      <div class="product-desc"><p><%=@product.product_description%></p></div>
+      <hr>
+      <div class="product-price"><p>Price: $<%=@product.product_price%></p></div>
+      <hr>
+      <form id="add_form" action="/order/add" method="post">
+        <input type="hidden" name="product_id" value="<%=@product.id%>" />
+        <input type="hidden" name="user_id" value="<%= session[:user_id] %>" />
+        <label for="quantity">Qty: </label>
+        <input min="1" type="number" id="quantity" name="product_qty" value="product_qty" />
+          <style>#quantity {width:35px; border: 1px solid #555; }</style>
+        <input id="add_button" type="submit" value="Add to Bag" onclick="" />
+      </form>
+    </div>
+</div>

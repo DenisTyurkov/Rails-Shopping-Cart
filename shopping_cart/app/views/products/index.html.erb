@@ -1,21 +1,16 @@
 
-<div class="container">
-  <div class="row">
-    <div class="col-lg-12">
 
-      <% Product.all.each do |item| %>
+
+<div class="container">
+      <% @products.each do |product| %>
         <div class="col-sm-6 col-md-4 col-lg-3 product">
-          <div class="product-wrap" style="display: none">
-            <a href="/product/<%=item.id%>" data-featherlight="iframe" data-featherlight-iframe-height="500" data-featherlight-iframe-width="940" data-featherlight-other-close="add_button">
-              <img src="<%=item.product_image%>" alt="<%=item.product_name%>" class="img-responsive img-rounded">
-              <p class="title"> <%=item.product_name%></p>
-              <p class="price">$<%=item.product_price%></p>
+          <div class="product-wrap">
+            <a href="<%=product_path(product)%>">
+              <img src="<%=product.product_image%>" alt="<%=product.product_name%>" class="img-responsive img-rounded">
+              <p class="title"> <%=product.product_name%></p>
+              <p class="price">$<%=product.product_price%></p>
             </a>
           </div>
         </div>
       <% end %>
-
-    </div>
-  </div>
-
 </div>

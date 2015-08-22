@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20150820041041) do
     t.string   "product_name",                                null: false
     t.text     "product_description",                         null: false
     t.decimal  "product_price",       precision: 8, scale: 2, null: false
+    t.string   "product_image"
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
   end
